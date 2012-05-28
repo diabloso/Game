@@ -15,11 +15,7 @@ public class gameGUI extends javax.swing.JFrame {
     poker pok = new poker();
     imgloader il = new imgloader(24);
     ImageIcon[] img = new ImageIcon[5];
-    boolean k0=false;
-    boolean k1=false;
-    boolean k2=false;
-    boolean k3=false;
-    boolean k4=false;
+    int[] marked = new int[5]; 
     int tura=0;
     
     public gameGUI() {
@@ -156,6 +152,7 @@ public class gameGUI extends javax.swing.JFrame {
         getContentPane().add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 20, -1));
 
         jCheckBox2.setText("jCheckBox1");
+        jCheckBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox2ActionPerformed(evt);
@@ -261,8 +258,9 @@ public class gameGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-      
+
        if (tura==0){
+        poker.fill();
         String[] uklad = new String[5];
         uklad = pok.losuj();
         img = il.load(uklad);
@@ -296,27 +294,32 @@ public class gameGUI extends javax.swing.JFrame {
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
         // TODO add your handling code here:
-        k0=true;
+        if (jCheckBox5.isSelected()) marked[0]=1;
+        else marked[0]=0;
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         // TODO add your handling code here:
-        k1=true;
+        if (jCheckBox2.isSelected()) marked[1]=1;
+        else marked[1]=0;
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
         // TODO add your handling code here:
-        k2=true;
+        if (jCheckBox3.isSelected()) marked[2]=1;
+        else marked[2]=0;
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
         // TODO add your handling code here:
-        k3=true;
+        if (jCheckBox4.isSelected()) marked[3]=1;
+        else marked[3]=0;
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
-        k4=true;
+        if (jCheckBox1.isSelected()) marked[4]=1;
+        else marked[4]=0;
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -336,6 +339,11 @@ private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jLabel13.setIcon(null);
         jLabel14.setIcon(null);
         jLabel15.setIcon(null);
+        jCheckBox5.setSelected(false);
+        jCheckBox2.setSelected(false);
+        jCheckBox3.setSelected(false);
+        jCheckBox4.setSelected(false);
+        jCheckBox1.setSelected(false);
         tura=0;
         
 }//GEN-LAST:event_jButton2MouseClicked
@@ -346,11 +354,11 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         String[] uklad = new String[5];
         uklad = pok.losuj();
         img = il.load(uklad);
-        if (!k0) jLabel1.setIcon(img[0]);
-        if (!k1) jLabel3.setIcon(img[1]);
-        if (!k2) jLabel4.setIcon(img[2]);
-        if (!k3) jLabel5.setIcon(img[3]);
-        if (!k4) jLabel6.setIcon(img[4]);
+        if (marked[0]==0) jLabel1.setIcon(img[0]);
+        if (marked[1]==0) jLabel3.setIcon(img[1]);
+        if (marked[2]==0) jLabel4.setIcon(img[2]);
+        if (marked[3]==0) jLabel5.setIcon(img[3]);
+        if (marked[4]==0) jLabel6.setIcon(img[4]);
         tura++;
        }
        else {};
